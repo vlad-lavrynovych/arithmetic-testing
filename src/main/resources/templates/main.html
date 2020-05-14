@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body>
+    <div class="w-50 mx-auto">
+        <form method="post" >
+            <h3 th:text="${expression}"></h3>
+
+
+            <input type="hidden" name="expression" th:value="${expression}"  />
+            <input type="hidden" name="answer" th:value="${solution}"  />
+            <input type="text" name="solution" >
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+            <button class="btn btn-primary" type="submit">Reply</button>
+        </form>
+    </div>
+
+    <h2 class="w-50 mx-auto">* only wholenumber division, for example 74/61 = 1, 28/49 = 0, 15 / 3 = 5</h2>
+
+    <div class="w-50 mx-auto">
+        <form action="/endtesting" method="get">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+            <input class="btn btn-danger" type="submit" value="Check reports"/>
+
+        </form>
+    </div>
+</body>
+</html>

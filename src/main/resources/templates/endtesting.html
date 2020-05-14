@@ -1,0 +1,313 @@
+<!DOCTYPE HTML >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<p class="w-50 mx-auto">
+    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false"
+       aria-controls="multiCollapseExample1">For last test</a>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2"
+            aria-expanded="false" aria-controls="multiCollapseExample2">For all time
+    </button>
+    <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#multiCollapseExample3"
+            aria-expanded="false" aria-controls="multiCollapseExample3">For last days
+    </button>
+    <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#multiCollapseExample4"
+            aria-expanded="false" aria-controls="multiCollapseExample4">For last month
+    </button>
+    <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#multiCollapseExample5"
+            aria-expanded="false" aria-controls="multiCollapseExample5">For last year
+    </button>
+    <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse"
+            aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Collapse all
+    </button>
+<div class="w-50 mx-auto">Logout: </div>
+<form action="/logout" method="post" class="w-50 mx-auto">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+    <input class="btn btn-danger" type="submit" value="Sign Out"/>
+</form>
+</p>
+
+<div class="row">
+    <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="card card-body">
+                <table class="table table-dark w-50 mx-auto">
+                    <h2>Last test</h2>
+                    <thead>
+                    <tr>
+                        <th scope="col">Number of questions</th>
+                        <th scope="col">Corect answers</th>
+                        <th scope="col">Incorect answers</th>
+                        <th scope="col">Percent</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row" th:text="${count}">
+                        </th>
+                        <td th:text="${CorectAnswers}">
+                        </td>
+                        <td th:text="${IncorectAnswers}">
+                        </td>
+                        <td th:text="${percent}">
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-dark w-50 mx-auto">
+                    <thead>
+                    <tr>
+                        <th scope="col">Max answer time</th>
+                        <th scope="col">Min answer time</th>
+                        <th scope="col">Avg answer time</th>
+                        <th scope="col">Duration per question-answer</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${max}">
+                        </td>
+                        <td th:text="${min}">
+                        </td>
+                        <td th:text="${avg}">
+                        </td>
+                        <td th:text="${durration_per_question}">
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+            <div class="card card-body">
+                <table class="table table-dark w-50 mx-auto">
+                    <h2>For all time</h2>
+                    <thead>
+                    <tr>
+                        <th scope="col">Number of questions</th>
+                        <th scope="col">Corect answers</th>
+                        <th scope="col">Percent</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th th:text="${Questions}" scope="row">
+                        </th>
+                        <td th:text="${TotalNumberCorect}">
+                        </td>
+                        <td th:text="${TotalPercent}">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-dark w-50 mx-auto">
+                    <thead>
+                    <tr>
+
+                        <th scope="col">Max answer time</th>
+                        <th scope="col">Min answer time</th>
+                        <th scope="col">Avg answer time</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${TotalMaxAllTime}">
+                        </td>
+                        <td th:text="${TotalMinAllTime}">
+                        </td>
+                        <td th:text="${TotalAvgAllTime}">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample3">
+            <div class="card card-body">
+                <table class="table table-dark w-50 mx-auto">
+                    <h2>For last day</h2>
+                    <thead>
+                    <tr>
+                        <th scope="col">Number of questions</th>
+                        <th scope="col">Corect answers</th>
+                        <th scope="col">Percent</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th th:text="${dayQuestions}" scope="row">
+                        </th>
+                        <td th:text="${dayNumberCorect}">
+                        </td>
+
+                        <td th:text="${dayPercent}">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-dark w-50 mx-auto">
+                    <thead>
+                    <tr>
+
+                        <th scope="col">Max answer time</th>
+                        <th scope="col">Min answer time</th>
+                        <th scope="col">Avg answer time</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${dayMaxAllTime}">
+                        </td>
+                        <td th:text="${dayMinAllTime}">
+                        </td>
+                        <td th:text="${dayAvgAllTime}">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample4">
+            <div class="card card-body">
+                <table class="table table-dark w-50 mx-auto">
+                    <h2>For last month</h2>
+                    <thead>
+                    <tr>
+                        <th scope="col">Number of questions</th>
+                        <th scope="col">Corect answers</th>
+                        <th scope="col">Percent</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th  th:text="${monthQuestions}" scope="row">
+                        </th>
+                        <td th:text="${monthNumberCorect}">
+                        </td>
+
+                        <td th:text="${monthPercent}">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-dark w-50 mx-auto">
+                    <thead>
+                    <tr>
+                        <th scope="col">Max answer time</th>
+                        <th scope="col">Min answer time</th>
+                        <th scope="col">Avg answer time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${monthMaxAllTime}">
+                        </td>
+                        <td th:text="${monthMinAllTime}">
+                        </td>
+                        <td th:text="${monthAvgAllTime}">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample5">
+            <div class="card card-body">
+                <table class="table table-dark w-50 mx-auto">
+                    <h2>For last year</h2>
+                    <thead>
+                    <tr>
+                        <th scope="col">Number of questions</th>
+                        <th scope="col">Corect answers</th>
+                        <th scope="col">Percent</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th  th:text="${yearQuestions}" scope="row">
+                        </th>
+                        <td th:text="${yearNumberCorect}">
+                        </td>
+
+                        <td th:text="${yearPercent}">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-dark w-50 mx-auto">
+                    <thead>
+                    <tr>
+                        <th scope="col">Max answer time</th>
+                        <th scope="col">Min answer time</th>
+                        <th scope="col">Avg answer time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${yearMaxAllTime}">
+                        </td>
+                        <td th:text="${yearMinAllTime}">
+                        </td>
+                        <td th:text="${yearAvgAllTime}">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
